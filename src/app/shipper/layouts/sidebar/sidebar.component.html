@@ -1,0 +1,134 @@
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a href="./index.html" class="text-nowrap logo-img">
+          <img src="../assets/images/logos/ghn-logo.png" width="180" alt="">
+        </a>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+          <i class="ti ti-x fs-8"></i>
+        </div>
+      </div>
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav scroll-sidebar" data-simplebar="init"><div class="simplebar-wrapper selected" style="margin: 0px -24px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask selected"><div class="simplebar-offset selected" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper selected" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content selected" style="padding: 0px 24px;">
+        <ul id="sidebarnav" class="in">
+          <ng-container  *ngFor="let item of menuItems">
+            <ng-container *ngIf="item.isTitle; else elseTemplate">
+              <li class="{{item.classTitle}}">
+                <i class="{{item.icon}}"></i>
+                <span class="hide-menu">{{item.title}}</span>
+              </li>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <li class="{{item.classTitle}}" [ngClass]="{'selected': isSelected(item.url)}">
+                <a class="sidebar-link" [ngClass]="{'active': isSelected(item.url)}" [routerLink]="item.url">
+                  <span>
+                    <i class="{{item.icon}}"></i>
+                  </span>
+                  <span class="hide-menu">{{item.title}}</span>
+                </a>
+              </li>
+            </ng-template>
+          </ng-container>
+          <!-- <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Trang chủ</span>
+          </li>
+          <li class="sidebar-item" [ngClass]="{'selected': }">
+            <a class="sidebar-link active" routerLink="/system" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Hệ thống</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" routerLink="/system/order" aria-expanded="false">
+              <span>
+                <i class="ti ti-article"></i>
+              </span>
+              <span class="hide-menu">Đơn hàng</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" routerLink="/system/order" aria-expanded="false">
+              <span>
+                <i class="ti ti-users"></i>
+              </span>
+              <span class="hide-menu">Khách hàng</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-cards"></i>
+              </span>
+              <span class="hide-menu">Card</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-file-description"></i>
+              </span>
+              <span class="hide-menu">Forms</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-typography"></i>
+              </span>
+              <span class="hide-menu">Typography</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">AUTH</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-login"></i>
+              </span>
+              <span class="hide-menu">Login</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-user-plus"></i>
+              </span>
+              <span class="hide-menu">Register</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">EXTRA</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-mood-happy"></i>
+              </span>
+              <span class="hide-menu">Icons</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="./sample-page.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-aperture"></i>
+              </span>
+              <span class="hide-menu">Sample Page</span>
+            </a>
+          </li> -->
+        </ul>
+      </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 888px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 45px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
