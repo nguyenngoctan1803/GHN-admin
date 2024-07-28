@@ -36,6 +36,20 @@ export class SidebarComponent implements OnInit {
       classTitle: 'sidebar-item',
       icon: 'ti ti-article',
       url: '/system/order'
+    },
+    {
+      isTitle: false,
+      title: 'Shipper',
+      classTitle: 'sidebar-item',
+      icon: 'ti ti-bike',
+      url: '/system/shipper'
+    },
+    {
+      isTitle: false,
+      title: 'Khách hàng',
+      classTitle: 'sidebar-item',
+      icon: 'ti ti-users',
+      url: '/system/customer'
     }
   ]
   constructor(private router: Router) { }

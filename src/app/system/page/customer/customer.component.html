@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="search-container">
+          <div class="search-filter">
+          </div>
+          <div class="search-filter">
+          </div>
+          <button class="btn btn-success float-right" (click)="openUpdateModal(null,'add')">Thêm</button>
+        </div>
+        <div class="table-container table-responsive border rounded-4">
+          <perfect-scrollbar [config]="scrollbarConfig" style="height: calc(100vh - 19rem);">
+            <table class="table table-hover fixed-width mb-0">
+              <thead class="table-dark sticky-top">
+                <tr>
+                  <th scope="col">#ID</th>
+                  <th scope="col">Họ tên</th>
+                  <th scope="col">Email</th>
+                  <th scope="col" style="min-width: 180px;">Chức năng</th>
+                </tr>
+              </thead>
+  
+              <tbody class="scroll-sidebar">
+                <tr
+                  *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: page }">
+                  <th scope="row">{{item.shipperID}}</th>
+                  <td>{{item.hoTen}}</td>
+                  <td>{{item.email}}</td>
+                  <td>
+                    <button class="btn btn-success round-40 btn-sm mx-1" (click)="openUpdateModal(item,'edit')">
+                      <i class="ti ti-pencil fs-5"></i>
+                    </button>
+                    <button class="btn btn-danger round-40 btn-sm mx-1" (click)="openDeleteModal(item.khachHangID)">
+                      <i class="ti ti-trash fs-5"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="pagination-container">
+        <div class="pagination">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <update-customer-modal #updateModal (outputEvent)="confirmUpdate($event)"></update-customer-modal>
+  <delete-customer-modal #deleteModal (outputEvent)="confirmDelete($event)"></delete-customer-modal>

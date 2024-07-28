@@ -42,7 +42,19 @@ export class AdminService {
 
     return this.apiService.get(`Admin/tat-ca-don-hang${url}`);
   }
-  
+
+  getOrderById(id){
+    return this.apiService.get(`DonHang/${id}`);
+  }
+  getDetailOrderByOrderId(orderId){
+    return this.apiService.get(`Donhang/chitietdonhang/${orderId}`);
+  }
+  getDetailCustomerByCusId(khId){
+    return this.apiService.get(`Khachhang/${khId}`);
+  }
+  getDetailShipperByCusId(id){
+    return this.apiService.get(`Shipper/${id}`);
+  }
   getListStatus(){
     return this.apiService.get('Admin/tat-ca-trang-thai');
   }
@@ -53,5 +65,34 @@ export class AdminService {
   refundOrder(orderId){
     let adminId = this.cookieService.getCookie(environment.idAdmin);
     return this.apiService.post(`Admin/xac-nhan-hoan-hang?donHangId=${orderId}&adminId=${adminId}`,{});
+  }
+  deleteOrder(orderId){
+    return this.apiService.delete(`DonHang/${orderId}`);
+  }
+
+  getListShipper(){
+    return this.apiService.get(`Admin/danh-sach-shipper`);
+  }
+  createShipper(body){
+    return this.apiService.post(`Admin/create-shipper`, body);
+  }
+  updateShipper(body){
+    return this.apiService.put(`Admin/update-shipper`, body);
+  }
+  deleteShipper(id){
+    return this.apiService.delete(`Shipper/${id}`);
+  }
+
+  getListCustomer(){
+    return this.apiService.get(`Admin/danh-sach-khach-hang`);
+  }
+  createCustomer(body){
+    return this.apiService.post(`Admin/create-customer`, body);
+  }
+  updateCustomer(body){
+    return this.apiService.put(`Admin/update-customer`, body);
+  }
+  deleteCustomer(id){
+    return this.apiService.delete(`KhachHang/${id}`);
   }
 }

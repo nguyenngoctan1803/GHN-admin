@@ -14,6 +14,14 @@ import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrol
 import { ApproveModalComponent } from './page/order/approve-modal/approve-modal.component';
 import { RefundModalComponent } from './page/order/refund-modal/refund-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetailModalComponent } from './page/order/detail-modal/detail-modal.component';
+import { DeleteModalComponent } from './page/order/delete-modal/delete-modal.component';
+import { ShipperComponent } from './page/shipper/shipper.component';
+import { UpdateShipperModalComponent } from './page/shipper/update-shipper-modal/update-shipper-modal.component';
+import { DeleteShipperModalComponent } from './page/shipper/delete-shipper-modal/delete-shipper-modal.component';
+import { CustomerComponent } from './page/customer/customer.component';
+import { UpdateCustomerModalComponent } from './page/customer/update-customer-modal/update-customer-modal.component';
+import { DeleteCustomerModalComponent } from './page/customer/delete-customer-modal/delete-customer-modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -25,7 +33,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DashboardComponent,
     OrderComponent,
     ApproveModalComponent,
-    RefundModalComponent
+    RefundModalComponent,
+    DetailModalComponent,
+    DeleteModalComponent,
+    ShipperComponent,
+    UpdateShipperModalComponent,
+    DeleteShipperModalComponent,
+    CustomerComponent,
+    UpdateCustomerModalComponent,
+    DeleteCustomerModalComponent,
   ],
   imports: [
     CommonModule,

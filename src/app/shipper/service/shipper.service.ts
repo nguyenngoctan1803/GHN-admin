@@ -35,9 +35,25 @@ export class ShipperService {
     let url = search ? `?search=${search}` : '';
     return this.apiService.get('Shipper/don-hang-co-the-nhan' + url); 
   }
+  getListProcess(){
+    let shipperId = this.cookieService.getCookie(environment.idShipper);
+    let url = `?shipperId=${shipperId}`;
+    return this.apiService.get('Shipper/don-hang-dang-thuc-hien' + url); 
+  }
 
   approveOrder(orderId){ // nhận đơn hàng
     let shipperId = this.cookieService.getCookie(environment.idShipper);
     return this.apiService.post(`Shipper/nhan-don-hang?donHangId=${orderId}&shipperId=${shipperId}`, {});
+  }
+  doneOrder(orderId){
+    let shipperId = this.cookieService.getCookie(environment.idShipper);
+    return this.apiService.post(`Shipper/xac-nhan-giao-hang?donHangId=${orderId}`, {});
+  }
+  refundOrder(orderId, reason){
+    let payload = {
+      donHangId: orderId,
+      lyDo: reason
+    }
+    return this.apiService.post(`Shipper/hoan-hang`, payload);
   }
 }

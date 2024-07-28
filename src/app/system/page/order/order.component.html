@@ -20,12 +20,13 @@
                 <th scope="col">#ID</th>
                 <th scope="col">Khách hàng</th>
                 <th scope="col">Ngày tạo</th>
-                <th scope="col">SDT người nhận</th>
+                <th scope="col">Tiền vận chuyển</th>
+                <!-- <th scope="col">SDT người nhận</th>
                 <th scope="col">SDT người giao</th>
                 <th scope="col">Địa chỉ nhận</th>
-                <th scope="col">Địa chỉ giao</th>
+                <th scope="col">Địa chỉ giao</th> -->
                 <th scope="col">Trạng thái</th>
-                <th scope="col" style="min-width: 150px;">Chức năng</th>
+                <th scope="col" style="min-width: 180px;">Chức năng</th>
               </tr>
             </thead>
 
@@ -35,24 +36,28 @@
                 <th scope="row">{{item.donHangID}}</th>
                 <td>{{item.hoTenKhachHang}}</td>
                 <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
-                <td>{{item.soDienThoaiNguoiGui}}</td>
+                <td>{{item.tienVanChuyen | currency}}</td>
+                <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
                 <td>{{item.soDienThoaiNguoiNhan}}</td>
                 <td>{{item.diaChiGiaoHang}}</td>
-                <td>{{item.diaChiNhanHang}}</td>
+                <td>{{item.diaChiNhanHang}}</td> -->
                 <td>
                   <span class="badge text-bg-{{getClassByStatusId(item.trangThaiID)}}">
                     {{item.moTaTrangThai}}
                   </span>
                 </td>
                 <td>
-                  <button class="btn btn-info round-40 btn-sm mx-1">
+                  <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangID)">
                     <i class="ti ti-info-circle fs-5"></i>
                   </button>
-                  <button *ngIf="item.trangThaiID == 1"  class="btn btn-success round-40 btn-sm" (click)="openApproveModal(item.donHangID)">
+                  <button *ngIf="item.trangThaiID == 1"  class="btn btn-success round-40 btn-sm mx-1" (click)="openApproveModal(item.donHangID)">
                     <i class="ti ti-circle-check fs-5"></i>
                   </button>
-                  <button *ngIf="item.trangThaiID == 5" class="btn btn-success round-40 btn-sm" (click)="openRefundModal(item.donHangID)">
+                  <button *ngIf="item.trangThaiID == 5" class="btn btn-success round-40 btn-sm mx-1" (click)="openRefundModal(item.donHangID)">
                     <i class="ti ti-arrow-back-up fs-5"></i>
+                  </button>
+                  <button class="btn btn-danger round-40 btn-sm mx-1" (click)="openDeleteModal(item.donHangID)">
+                    <i class="ti ti-trash fs-5"></i>
                   </button>
                 </td>
               </tr>
@@ -70,3 +75,5 @@
 </div>
 <approve-modal #approveModal (outputEvent)="confirmApprove($event)"></approve-modal>
 <refund-modal #refundModal (outputEvent)="confirmRefund($event)"></refund-modal>
+<delete-modal #deleteModal (outputEvent)="confirmDelete($event)"></delete-modal>
+<detail-modal #detailModal></detail-modal>

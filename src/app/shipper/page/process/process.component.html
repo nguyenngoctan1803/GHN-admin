@@ -15,12 +15,12 @@
               <thead class="table-dark sticky-top">
                 <tr>
                   <th scope="col">#ID</th>
-                  <th scope="col">Khách hàng</th>
                   <th scope="col">Ngày tạo</th>
-                  <th scope="col">SDT người nhận</th>
+                  <!-- <th scope="col">SDT người nhận</th>
                   <th scope="col">SDT người giao</th>
                   <th scope="col">Địa chỉ nhận</th>
-                  <th scope="col">Địa chỉ giao</th>
+                  <th scope="col">Địa chỉ giao</th> -->
+                  <th scope="col">Tiền vận chuyển</th>
                   <th scope="col" style="min-width: 150px;">Chức năng</th>
                 </tr>
               </thead>
@@ -28,19 +28,22 @@
               <tbody class="scroll-sidebar">
                 <tr
                   *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: page }">
-                  <th scope="row">{{item.donHangID}}</th>
-                  <td>{{item.hoTenKhachHang}}</td>
+                  <th scope="row">{{item.donHangId}}</th>
                   <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
-                  <td>{{item.soDienThoaiNguoiGui}}</td>
+                  <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
                   <td>{{item.soDienThoaiNguoiNhan}}</td>
                   <td>{{item.diaChiGiaoHang}}</td>
-                  <td>{{item.diaChiNhanHang}}</td>
+                  <td>{{item.diaChiNhanHang}}</td> -->
+                  <td>{{item.tienVanChuyen | currency}}</td>
                   <td>
-                    <button class="btn btn-info round-40 btn-sm mx-1">
+                    <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangId)">
                       <i class="ti ti-info-circle fs-5"></i>
                     </button>
-                    <button class="btn btn-success round-40 btn-sm" (click)="openApproveModal(item.donHangID)">
+                    <button class="btn btn-success round-40 btn-sm mx-1" (click)="openDoneModal(item.donHangId)">
                       <i class="ti ti-circle-check fs-5"></i>
+                    </button>
+                    <button class="btn btn-warning round-40 btn-sm mx-1" (click)="openRefundModal(item.donHangId)">
+                      <i class="ti ti-refresh fs-5"></i>
                     </button>
                   </td>
                 </tr>
@@ -56,4 +59,6 @@
       </div>
     </div>
   </div>
-  <!-- <done-modal #approveModal (outputEvent)="confirmApprove($event)"></done-modal> -->
+  <detail-process-modal #detailModal></detail-process-modal>
+  <done-modal #doneModal (outputEvent)="confirmDone($event)"></done-modal>
+  <refund-modal #refundModal (outputEvent)="confirmRefund($event)"></refund-modal>

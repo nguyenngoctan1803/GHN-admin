@@ -1,0 +1,16 @@
+<ng-template #modal>
+    <div class="modal-header modal-colored-header bg-danger">
+      <h4 class="modal-title text-center text-white">Xóa đơn hàng #{{orderId}}</h4>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modalRef.close()">
+      </button>
+    </div>
+    <div class="modal-body">Bạn có chắc chắn muốn xóa đơn hàng?</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modalRef.close()">
+        Đóng
+      </button>
+      <button type="button" class="btn bg-warning-subtle text-danger" (click)="confirm()">
+        Xác nhận
+      </button>
+    </div>
+</ng-template>

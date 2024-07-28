@@ -37,8 +37,8 @@ export class OrderComponent implements OnInit {
 
   //approve
   @ViewChild('approveModal') approveModal: any;
-  @ViewChild('refundModal') refundModal: any;
-
+  @ViewChild('detailModal') detailModal: any;
+  
   constructor(
     private router: Router,
     private shipperService: ShipperService,
@@ -98,4 +98,8 @@ export class OrderComponent implements OnInit {
       }
     )
   }
+      // detail
+      openDetailModal(id) {
+        this.detailModal.openDetailModal(id);
+      }
 }

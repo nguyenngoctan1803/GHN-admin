@@ -27,7 +27,6 @@ export class ProcessComponent implements OnInit {
   data: any[] = [];
   selectedOrderId: number = -1;
   page: any;
-  searchControl = new FormControl();
   // scrollbar
   scrollbarConfig: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -37,9 +36,10 @@ export class ProcessComponent implements OnInit {
   };
 
   //approve
-  @ViewChild('approveModal') approveModal: any;
+  @ViewChild('doneModal') doneModal: any;
   @ViewChild('refundModal') refundModal: any;
-
+  @ViewChild('detailModal') detailModal: any;
+  
   constructor(
     private router: Router,
     private shipperService: ShipperService,
@@ -50,18 +50,11 @@ export class ProcessComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
 
-    this.searchControl.valueChanges
-      .pipe(
-        debounceTime(2000) // Chờ 300ms sau khi người dùng ngừng nhập
-      )
-      .subscribe(value => {
-        this.onSearch(value);
-      });
   }
 
   // Init Data
-  loadData(search= '') {
-    this.shipperService.getListOrder(search).subscribe(
+  loadData() {
+    this.shipperService.getListProcess().subscribe(
       response => {
         this.data = response as any[];
       },
@@ -77,27 +70,44 @@ export class ProcessComponent implements OnInit {
     return this.statusService.getClassById(id);
   }
 
-  // filter
-  onSearch(value: string) {
-    this.loadData(value);
-  }
-
   // approve
-  openApproveModal(id) {
-    this.approveModal.openApproveModal(id);
+  openDoneModal(id) {
+    this.doneModal.openDoneModal(id);
   }
 
-  confirmApprove($event) {
-    this.shipperService.approveOrder($event).subscribe(
+  confirmDone($event) {
+    this.shipperService.doneOrder($event).subscribe(
       response => {
-        this.toastr.success('Nhận đơn hàng thành công', 'Thông báo');
-        this.loadData(this.searchControl.value);
+        this.toastr.success('Xác nhận giao đơn hàng thành công', 'Thông báo');
+        this.loadData();
       },
       error => {
-        this.toastr.error('Nhận đơn hàng không thành công', 'Thông báo');
+        this.toastr.error('Xác nhận giao đơn hàng không thành công', 'Thông báo');
         console.error('There was an error!', error);
       }
     )
   }
+  // approve
+  openRefundModal(id) {
+    this.refundModal.openRefundModal(id);
+  }
+
+  confirmRefund($event) {
+    this.shipperService.refundOrder($event.orderId, $event.reason).subscribe(
+      response => {
+        this.toastr.success('Hoàn hàng đang chờ xử lý', 'Thông báo');
+        this.loadData();
+      },
+      error => {
+        this.toastr.error('Đăng ký hoàn hàng không thành công', 'Thông báo');
+        console.error('There was an error!', error);
+      }
+    )
+  }
+
+        // detail
+        openDetailModal(id) {
+          this.detailModal.openDetailModal(id);
+        }
 }
 

@@ -42,4 +42,7 @@ export class StatusTransitionService {
   getClassById(id){
     return this.status.find(s => s.id == id)?.class ?? 'info';
   }
+  getNameById(id){
+    return this.status.find(s => s.id == id)?.name ?? 'Không xác định';
+  }
 }

@@ -1,0 +1,19 @@
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .search-filter {
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* khoảng cách giữa các bộ lọc */
+  }
+  
+  .search-filter label {
+    text-align: right;
+    width: 50%;
+    margin-right: 10px;
+  }

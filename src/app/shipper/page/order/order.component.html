@@ -18,10 +18,12 @@
                 <th scope="col">#ID</th>
                 <th scope="col">Khách hàng</th>
                 <th scope="col">Ngày tạo</th>
-                <th scope="col">SDT người nhận</th>
+                <th scope="col">Tiền vận chuyển</th>
+                
+                <!-- <th scope="col">SDT người nhận</th>
                 <th scope="col">SDT người giao</th>
                 <th scope="col">Địa chỉ nhận</th>
-                <th scope="col">Địa chỉ giao</th>
+                <th scope="col">Địa chỉ giao</th> -->
                 <th scope="col" style="min-width: 150px;">Chức năng</th>
               </tr>
             </thead>
@@ -32,12 +34,13 @@
                 <th scope="row">{{item.donHangID}}</th>
                 <td>{{item.hoTenKhachHang}}</td>
                 <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
-                <td>{{item.soDienThoaiNguoiGui}}</td>
+                <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
                 <td>{{item.soDienThoaiNguoiNhan}}</td>
                 <td>{{item.diaChiGiaoHang}}</td>
-                <td>{{item.diaChiNhanHang}}</td>
+                <td>{{item.diaChiNhanHang}}</td> -->
+                <td>{{item.tienVanChuyen | currency}}</td>
                 <td>
-                  <button class="btn btn-info round-40 btn-sm mx-1">
+                  <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangID)">
                     <i class="ti ti-info-circle fs-5"></i>
                   </button>
                   <button class="btn btn-success round-40 btn-sm" (click)="openApproveModal(item.donHangID)">
@@ -58,3 +61,4 @@
   </div>
 </div>
 <approve-modal #approveModal (outputEvent)="confirmApprove($event)"></approve-modal>
+<detail-modal #detailModal></detail-modal>

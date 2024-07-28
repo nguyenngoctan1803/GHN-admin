@@ -47,6 +47,8 @@ export class OrderComponent implements OnInit {
   //approve
   @ViewChild('approveModal') approveModal: any;
   @ViewChild('refundModal') refundModal: any;
+  @ViewChild('deleteModal') deleteModal: any;
+  @ViewChild('detailModal') detailModal: any;
 
   constructor(
     private router: Router,
@@ -83,16 +85,16 @@ export class OrderComponent implements OnInit {
   loadStatus() {
     this.adminService.getListStatus().subscribe(
       response => {
-        // this.listStatus = [{
-        //   id: this.selectedStatus,         // Giá trị id của phần tử mặc định
-        //   text: 'Tất cả' // Giá trị text của phần tử mặc định
-        // },
-        // ... (response as any[]).map(r => {
-        //   return {
-        //     id: r.trangThaiID,
-        //     text: r.moTaTrangThai
-        //   }
-        // })];
+        this.listStatus = [{
+          id: this.selectedStatus,         // Giá trị id của phần tử mặc định
+          text: 'Tất cả' // Giá trị text của phần tử mặc định
+        },
+        ... (response as any[]).map(r => {
+          return {
+            id: r.trangThaiID,
+            text: r.moTaTrangThai
+          }
+        })];
 
       },
       error => {
@@ -132,7 +134,7 @@ export class OrderComponent implements OnInit {
       }
     )
   }
-  //approve
+  // refund
   openRefundModal(id) {
     this.refundModal.openRefundModal(id);
   }
@@ -149,4 +151,26 @@ export class OrderComponent implements OnInit {
       }
     )
   }
+  // delete
+  openDeleteModal(id) {
+    this.deleteModal.openDeleteModal(id);
+  }
+
+  confirmDelete($event) {
+    this.adminService.deleteOrder($event).subscribe(
+      response => {
+        this.toastr.success('Xóa đơn hàng thành công', 'Thông báo');
+        this.loadData(this.searchControl.value, this.selectedStatus != -1 ? this.selectedStatus : '');
+      },
+      error => {
+        this.toastr.error('Xóa đơn hàng không thành công', 'Thông báo');
+        console.error('There was an error!', error);
+      }
+    )
+  }
+    // detail
+    openDetailModal(id) {
+      this.detailModal.openDetailModal(id);
+    }
+  
 }

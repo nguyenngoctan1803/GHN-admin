@@ -33,7 +33,9 @@ export class ApiService {
 
   // PUT
   put(endpoint: string, body: any, options?: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${endpoint}`, body, options);
+    return this.http.put(`${this.apiUrl}/${endpoint}`, body, options).pipe(
+      catchError(this.handleError)
+    );
   }
 
   // DELETE

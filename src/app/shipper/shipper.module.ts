@@ -16,6 +16,8 @@ import { ApproveModalComponent } from './page/order/approve-modal/approve-modal.
 import { ProcessComponent } from './page/process/process.component';
 import { DoneModalComponent } from './page/process/done-modal/done-modal.component';
 import { RefundModalComponent } from './page/process/refund-modal/refund-modal.component';
+import { DetailModalComponent } from './page/order/detail-modal/detail-modal.component';
+import { DetailProcessModalComponent } from './page/process/detail-modal/detail-modal.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { RefundModalComponent } from './page/process/refund-modal/refund-modal.c
     ProcessComponent,
     DoneModalComponent,
     RefundModalComponent,
+    DetailModalComponent,
+    DetailProcessModalComponent
   ],
   imports: [
     CommonModule,
