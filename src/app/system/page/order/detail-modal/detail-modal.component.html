@@ -28,7 +28,7 @@
                     <li><strong>Địa chỉ lấy hàng:</strong> {{order.diaChiNhanHang}}</li>
                     <li><strong>Địa chỉ giao hàng:</strong> {{order.diaChiGiaoHang}}</li>
                     <li><strong>Tiền vận chuyển:</strong> {{order.tienVanChuyen | currency}}</li>
-                    <li *ngIf="order.trangThaiId >= 5"><strong>Lý do hoàn hàng:</strong> {{order.tienVanChuyen | currency}}</li>
+                    <li *ngIf="order.trangThaiId >= 5"><strong>Lý do hoàn hàng:</strong> {{reason[0].lyDo}}</li>
                 </ul>
             </div>
         </div>

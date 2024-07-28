@@ -19,6 +19,7 @@ export class DetailModalComponent implements OnInit {
   order: any;
   customer: any;
   shipper: any;
+  reason: any;
   orderDetail: any = [];
   closeResult: string = '';
   modalRef: NgbModalRef;
@@ -45,6 +46,9 @@ export class DetailModalComponent implements OnInit {
         const customerId = this.order.khachHangId;
         if(this.order.shipperId){
           this.loadShipper(this.order.shipperId);
+        }
+        if(this.order.trangThaiId >= 5){
+          this.loadLyDoHoanHang(orderId);
         }
         forkJoin({
           orderDetail: this.adminService.getDetailOrderByOrderId(orderId).pipe(
@@ -93,6 +97,17 @@ export class DetailModalComponent implements OnInit {
       },
       error => {
         this.toastr.error('Lấy thông tin người giao hàng không thành công', 'Thông báo');
+        console.error('There was an error!', error);
+      }
+    )
+  }
+  loadLyDoHoanHang(id){
+    this.adminService.getReasonOrderByOrderId(id).subscribe(
+      response => {
+        this.reason = response;
+      },
+      error => {
+        this.toastr.error('Lấy lý do hoàn hàng không thành công', 'Thông báo');
         console.error('There was an error!', error);
       }
     )

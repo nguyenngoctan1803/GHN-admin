@@ -55,6 +55,9 @@ export class AdminService {
   getDetailShipperByCusId(id){
     return this.apiService.get(`Shipper/${id}`);
   }
+  getReasonOrderByOrderId(orderId){
+    return this.apiService.get(`Donhang/lydohoanhang/${orderId}`);
+  }
   getListStatus(){
     return this.apiService.get('Admin/tat-ca-trang-thai');
   }
