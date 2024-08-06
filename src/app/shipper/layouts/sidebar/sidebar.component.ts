@@ -49,14 +49,14 @@ export class SidebarComponent implements OnInit {
       title: 'Đơn hàng thành công',
       classTitle: 'sidebar-item',
       icon: 'ti ti-checklist',
-      url: ''
+      url: '/shipper/success'
     },
     {
       isTitle: false,
       title: 'Đơn hàng bị hoàn trả',
       classTitle: 'sidebar-item',
       icon: 'ti ti-refresh',
-      url: ''
+      url: '/shipper/refund'
     }
   ]
   constructor(private router: Router) { }

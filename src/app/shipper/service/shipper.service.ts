@@ -40,7 +40,16 @@ export class ShipperService {
     let url = `?shipperId=${shipperId}`;
     return this.apiService.get('Shipper/don-hang-dang-thuc-hien' + url); 
   }
-
+  getListSuccess(){
+    let shipperId = this.cookieService.getCookie(environment.idShipper);
+    let url = `?shipperId=${shipperId}`;
+    return this.apiService.get('Shipper/don-hang-thanh-cong' + url); 
+  }
+  getListRefund(){
+    let shipperId = this.cookieService.getCookie(environment.idShipper);
+    let url = `?shipperId=${shipperId}`;
+    return this.apiService.get('Shipper/don-hang-hoan' + url); 
+  }
   approveOrder(orderId){ // nhận đơn hàng
     let shipperId = this.cookieService.getCookie(environment.idShipper);
     return this.apiService.post(`Shipper/nhan-don-hang?donHangId=${orderId}&shipperId=${shipperId}`, {});
@@ -56,4 +65,11 @@ export class ShipperService {
     }
     return this.apiService.post(`Shipper/hoan-hang`, payload);
   }
+    // profile
+    updateProfile(body){
+      return this.apiService.put(`Shipper/update`, body);
+    }
+    changePassword(body){
+      return this.apiService.put(`Shipper/changepassword`, body);
+    }
 }

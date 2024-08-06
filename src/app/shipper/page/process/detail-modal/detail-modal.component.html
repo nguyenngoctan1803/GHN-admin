@@ -20,15 +20,15 @@
                     <li><strong>Mã đơn:</strong> #{{order.donHangId}}</li>
                     <li>
                         <strong>Trạng thái:</strong>
-                        <span class="badge text-bg-{{getClassByStatusId(orderDetail.trangThaiId)}} d-inline">{{getNameByStatusId(order.trangThaiId)}}</span>
+                        <span class="badge text-bg-{{getClassByStatusId(order.trangThaiId)}} d-inline">{{getNameByStatusId(order.trangThaiId)}}</span>
                     </li>
                     <li><strong>Ngày tạo:</strong> {{order.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</li>
                     <li><strong>Số điện thoại người gửi:</strong> {{order.soDienThoaiNguoiGui}}</li>
-                    <li><strong>Số điện thoại người nhận:</strong> {{order.soDienThoaiNguoiNhanz}}</li>
+                    <li><strong>Số điện thoại người nhận:</strong> {{order.soDienThoaiNguoiNhan}}</li>
                     <li><strong>Địa chỉ lấy hàng:</strong> {{order.diaChiNhanHang}}</li>
                     <li><strong>Địa chỉ giao hàng:</strong> {{order.diaChiGiaoHang}}</li>
-                    <li><strong>Tiền vận chuyển:</strong> {{order.tienVanChuyen | currency}}</li>
-                    <li *ngIf="order.trangThaiId >= 5"><strong>Lý do hoàn hàng:</strong> {{order.tienVanChuyen | currency}}</li>
+                    <li><strong>Tiền vận chuyển:</strong> {{order.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</li>
+                    <li *ngIf="order.trangThaiId >= 5 && order.trangThaiId != 8"><strong>Lý do hoàn hàng:</strong> {{order.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</li>
                 </ul>
             </div>
         </div>
@@ -61,7 +61,7 @@
                             <div><strong>{{item.khoiLuong}}</strong></div>
                         </td>
                         <td>    
-                            <div><strong>{{item.tienThuHoCod | currency}}</strong></div>
+                            <div><strong>{{item.tienThuHoCod | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</strong></div>
                         </td>
                     </tr>
                 </tbody>

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="search-container">
+          <div class="search-filter">
+  
+          </div>
+          <div class="search-filter">
+            
+          </div>
+        </div>
+        <div class="table-container table-responsive border rounded-4">
+          <perfect-scrollbar [config]="scrollbarConfig" style="height: calc(100vh - 19rem);">
+            <table class="table table-hover fixed-width mb-0">
+              <thead class="table-dark sticky-top">
+                <tr>
+                  <th scope="col">#ID</th>
+                  <th scope="col">Ngày tạo</th>
+                  <!-- <th scope="col">SDT người nhận</th>
+                  <th scope="col">SDT người giao</th>
+                  <th scope="col">Địa chỉ nhận</th>
+                  <th scope="col">Địa chỉ giao</th> -->
+                  <th scope="col">Tiền vận chuyển</th>
+                  <th scope="col" style="min-width: 150px;">Chức năng</th>
+                </tr>
+              </thead>
+  
+              <tbody class="scroll-sidebar">
+                <tr
+                  *ngFor="let item of data | paginate: { itemsPerPage: 10, currentPage: page }">
+                  <th scope="row">{{item.donHangId}}</th>
+                  <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
+                  <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
+                  <td>{{item.soDienThoaiNguoiNhan}}</td>
+                  <td>{{item.diaChiGiaoHang}}</td>
+                  <td>{{item.diaChiNhanHang}}</td> -->
+                  <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
+                  <td>
+                    <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangId)">
+                      <i class="ti ti-info-circle fs-5"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="pagination-container">
+        <div class="pagination">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <detail-refund-modal #detailModal></detail-refund-modal>

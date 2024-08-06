@@ -98,4 +98,12 @@ export class AdminService {
   deleteCustomer(id){
     return this.apiService.delete(`KhachHang/${id}`);
   }
+
+  // profile
+  updateProfile(body){
+    return this.apiService.put(`Admin/update`, body);
+  }
+  changePassword(body){
+    return this.apiService.put(`Admin/changepassword`, body);
+  }
 }

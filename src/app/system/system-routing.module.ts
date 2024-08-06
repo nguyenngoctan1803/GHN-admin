@@ -5,6 +5,7 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { OrderComponent } from './page/order/order.component';
 import { ShipperComponent } from './page/shipper/shipper.component';
 import { CustomerComponent } from './page/customer/customer.component';
+import { ProfileComponent } from './page/profile/profile.component';
 
 const routes: Routes = [
   { path: "", children:[
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: "order", component: OrderComponent },
     { path: "shipper", component: ShipperComponent },
     { path: "customer", component: CustomerComponent },
+    { path: "profile", component: ProfileComponent },
   ], component: SystemComponent},
 ];
 

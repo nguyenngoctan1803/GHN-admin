@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormGroup, FormControl, EmailValidator, Validators} from '@angular/forms';
+import { FormGroup, FormControl, EmailValidator, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'environments/environment';
 import { StorageService } from 'app/shared/service/storage.service';
@@ -15,7 +15,7 @@ import { ShipperService } from 'app/shipper/service/shipper.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit, AfterViewInit {
-  test : Date = new Date();
+  test: Date = new Date();
   focus;
   focus1;
   signinForm = new FormGroup({
@@ -25,28 +25,27 @@ export class SigninComponent implements OnInit, AfterViewInit {
   });
 
   constructor(
-    private router:Router, 
+    private router: Router,
     private adminService: AdminService,
     private shipperService: ShipperService,
     private toastr: ToastrService,
+    private cookieService: StorageService,
     private subjectService: SubjectService
   ) { }
 
   ngAfterViewInit() {
-    this.subjectService.isAdminLoggedIn.subscribe(loggedIn => {
-      if(loggedIn){
-        this.router.navigate(['/system']);
-      } 
-    });
-    this.subjectService.isshipperLoggedIn.subscribe(loggedIn => {
-      if(loggedIn){
-        this.router.navigate(['/shipper']);
-      } 
-    });
+    const cookieValue1 = this.cookieService.getCookie(environment.tokenAdmin);
+    if (cookieValue1) {
+      this.router.navigate(['/system']);
+    }
+    const cookieValue2 = this.cookieService.getCookie(environment.tokenShipper);
+    if (cookieValue2) {
+      this.router.navigate(['/shipper']);
+    }
   }
 
   ngOnInit() {
-    
+
   }
 
   onSubmit() {
@@ -56,39 +55,39 @@ export class SigninComponent implements OnInit, AfterViewInit {
         email: formData.email,
         matKhau: formData.password
       };
-      if(formData.isAdmin){
+      if (formData.isAdmin) {
         this.adminService.login(payload).subscribe(
           response => {
             this.adminService.loginSuccess(response);
             this.subjectService.adminLogin();
-  
-            this.toastr.success('Đăng nhập thành công','Thông báo'); 
+
+            this.toastr.success('Đăng nhập thành công', 'Thông báo');
             this.router.navigate(['/system']);
           },
           error => {
-            this.toastr.error('Đăng nhập không thành công','Thông báo');
+            this.toastr.error('Đăng nhập không thành công', 'Thông báo');
             console.error('There was an error!', error);
           }
         );
-      } else{
+      } else {
         this.shipperService.login(payload).subscribe(
           response => {
             this.shipperService.loginSuccess(response);
             this.subjectService.shiperLogin();
-  
-            this.toastr.success('Đăng nhập thành công','Thông báo'); 
+
+            this.toastr.success('Đăng nhập thành công', 'Thông báo');
             this.router.navigate(['/shipper']);
           },
           error => {
-            this.toastr.error('Đăng nhập không thành công','Thông báo');
+            this.toastr.error('Đăng nhập không thành công', 'Thông báo');
             console.error('There was an error!', error);
           }
         );
       }
-      
+
     } else {
-      this.toastr.error('Thông tin đăng nhập không hợp lệ!','Thông báo');
+      this.toastr.error('Thông tin đăng nhập không hợp lệ!', 'Thông báo');
     }
   }
-  
+
 }

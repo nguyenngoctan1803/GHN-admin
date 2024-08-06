@@ -34,7 +34,12 @@ export class StatusTransitionService {
     {
       id: 6,
       name: 'Hoàn hàng đã hoàn tất',
-      class: 'primary'
+      class: 'success'
+    },
+    {
+      id: 8,
+      name: 'Đã hủy', 
+      class: 'danger'
     },
   ]
   constructor() { }

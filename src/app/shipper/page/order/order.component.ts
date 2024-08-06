@@ -38,7 +38,7 @@ export class OrderComponent implements OnInit {
   //approve
   @ViewChild('approveModal') approveModal: any;
   @ViewChild('detailModal') detailModal: any;
-  
+
   constructor(
     private router: Router,
     private shipperService: ShipperService,
@@ -59,7 +59,7 @@ export class OrderComponent implements OnInit {
   }
 
   // Init Data
-  loadData(search= '') {
+  loadData(search = '') {
     this.shipperService.getListOrder(search).subscribe(
       response => {
         this.data = response as any[];
@@ -98,8 +98,8 @@ export class OrderComponent implements OnInit {
       }
     )
   }
-      // detail
-      openDetailModal(id) {
-        this.detailModal.openDetailModal(id);
-      }
+  // detail
+  openDetailModal(id) {
+    this.detailModal.openDetailModal(id);
+  }
 }

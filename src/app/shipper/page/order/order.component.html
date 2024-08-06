@@ -38,7 +38,7 @@
                 <td>{{item.soDienThoaiNguoiNhan}}</td>
                 <td>{{item.diaChiGiaoHang}}</td>
                 <td>{{item.diaChiNhanHang}}</td> -->
-                <td>{{item.tienVanChuyen | currency}}</td>
+                <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
                 <td>
                   <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangID)">
                     <i class="ti ti-info-circle fs-5"></i>

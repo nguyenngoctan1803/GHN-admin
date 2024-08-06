@@ -47,7 +47,7 @@ export class DetailModalComponent implements OnInit {
         if(this.order.shipperId){
           this.loadShipper(this.order.shipperId);
         }
-        if(this.order.trangThaiId >= 5){
+        if(this.order.trangThaiId >= 5 && this.order.trangThaiId != 8){
           this.loadLyDoHoanHang(orderId);
         }
         forkJoin({

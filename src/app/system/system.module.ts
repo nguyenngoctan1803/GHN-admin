@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { SystemRoutingModule } from './system-routing.module';
 import { SystemComponent } from './system.component';
@@ -22,6 +22,11 @@ import { DeleteShipperModalComponent } from './page/shipper/delete-shipper-modal
 import { CustomerComponent } from './page/customer/customer.component';
 import { UpdateCustomerModalComponent } from './page/customer/update-customer-modal/update-customer-modal.component';
 import { DeleteCustomerModalComponent } from './page/customer/delete-customer-modal/delete-customer-modal.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { EditProfileComponent } from './page/profile/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './page/profile/change-password/change-password.component';
+import {  CustomCurrencyPipe } from 'app/shared/service/currency.pipe';
+import { PipeModule } from 'app/shared/module/pipe/pipe.module';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -42,6 +47,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CustomerComponent,
     UpdateCustomerModalComponent,
     DeleteCustomerModalComponent,
+    ProfileComponent,
+    EditProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -50,13 +58,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgSelect2Module,
     NgxPaginationModule,
     PerfectScrollbarModule,
+    PipeModule,
     SystemRoutingModule
   ],
   providers:[
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
   ]
 })
 export class SystemModule { }

@@ -109,7 +109,7 @@ export class CustomerComponent implements OnInit {
             this.loadData();
           },
           error => {
-            this.toastr.error('Sửa thông khách hàng không thành công', 'Thông báo');
+            this.toastr.error('Sửa thông tin khách hàng không thành công', 'Thông báo');
             console.error('There was an error!', error);
           }
         )

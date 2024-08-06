@@ -36,7 +36,7 @@
                 <th scope="row">{{item.donHangID}}</th>
                 <td>{{item.hoTenKhachHang}}</td>
                 <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
-                <td>{{item.tienVanChuyen | currency}}</td>
+                <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN' }}</td>
                 <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
                 <td>{{item.soDienThoaiNguoiNhan}}</td>
                 <td>{{item.diaChiGiaoHang}}</td>
