@@ -6,7 +6,8 @@
 
         </div>
         <div class="search-filter">
-
+          <label for="filter2">Tìm kiếm</label>
+          <input type="search" [formControl]="searchControl" class="form-control form-control-sm" placeholder="Tìm kiếm">
         </div>
       </div>
       <div class="table-container table-responsive border rounded-4">
@@ -21,7 +22,10 @@
                   <th scope="col">Địa chỉ nhận</th>
                   <th scope="col">Địa chỉ giao</th> -->
                 <th scope="col">Tiền vận chuyển</th>
+                <th scope="col">Tiền phí</th>
+                <th scope="col">Khoảng cách</th> 
                 <th scope="col" style="min-width: 150px;">Chức năng</th>
+                <th scope="col" style="min-width: 150px;">Thanh toán</th>
               </tr>
             </thead>
 
@@ -34,10 +38,23 @@
                   <td>{{item.diaChiGiaoHang}}</td>
                   <td>{{item.diaChiNhanHang}}</td> -->
                 <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
+                <td>{{item.tienPhi| customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
+                <td>{{item.khoangCach}} km</td>
                 <td>
                   <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangId)">
                     <i class="ti ti-info-circle fs-5"></i>
                   </button>
+                </td>
+                <td>
+                  <button *ngIf="item.payStatus == 0" class="btn btn-warning round-40 btn-sm mx-1" (click)="openChargeFeeModal(item.donHangId, item.tienPhi)">
+                    <i class="ti ti-check fs-5"></i>
+                  </button>
+                  <span *ngIf="item.payStatus == 1" class="badge text-bg-primary mx-1">
+                    Đang chờ xác nhận
+                  </span>
+                  <span *ngIf="item.payStatus == 2" class="badge text-bg-success mx-1">
+                    Đã xác nhận
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -53,3 +70,4 @@
   </div>
 </div>
 <detail-success-modal #detailModal></detail-success-modal>
+<charge-modal #chargeModal (outputEvent)="confirmCharge($event)"></charge-modal>

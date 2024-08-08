@@ -19,6 +19,8 @@
                 <th scope="col">Khách hàng</th>
                 <th scope="col">Ngày tạo</th>
                 <th scope="col">Tiền vận chuyển</th>
+                <th scope="col">Tiền Phí</th>
+                <th scope="col">Khoảng cách</th>
                 
                 <!-- <th scope="col">SDT người nhận</th>
                 <th scope="col">SDT người giao</th>
@@ -39,6 +41,8 @@
                 <td>{{item.diaChiGiaoHang}}</td>
                 <td>{{item.diaChiNhanHang}}</td> -->
                 <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
+                <td>{{item.tienPhi | customcurrency:'VND':'symbol':'1.0-2':'vi-VN'}}</td>
+                <td>{{item.khoangCach}} km</td>
                 <td>
                   <button class="btn btn-info round-40 btn-sm mx-1" (click)="openDetailModal(item.donHangID)">
                     <i class="ti ti-info-circle fs-5"></i>

@@ -32,6 +32,7 @@ export class CustomerComponent implements OnInit {
     wheelSpeed: 0.2,
     swipeEasing: true
   };
+  searchControl = new FormControl();
 
   //approve
   @ViewChild('updateModal') updateModal: any;
@@ -45,12 +46,19 @@ export class CustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(2000) // Chờ 300ms sau khi người dùng ngừng nhập
+      )
+      .subscribe(value => {
+        this.loadData(value);
+      });
     this.loadData();
   }
 
   // Init Data
-  loadData() {
-    this.adminService.getListCustomer().subscribe(
+  loadData(search = '') {
+    this.adminService.getListCustomer(search).subscribe(
       response => {
         this.data = response as any[];
       },

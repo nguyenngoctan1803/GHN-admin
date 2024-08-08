@@ -73,8 +73,12 @@ export class AdminService {
     return this.apiService.delete(`DonHang/${orderId}`);
   }
 
-  getListShipper(){
-    return this.apiService.get(`Admin/danh-sach-shipper`);
+  chargeOrder(orderId){
+    return this.apiService.post(`Admin/xac-nhan-phi/${orderId}`, {});
+  }
+
+  getListShipper(search = ''){
+    return this.apiService.get(`Admin/danh-sach-shipper?search=${search}`);
   }
   createShipper(body){
     return this.apiService.post(`Admin/create-shipper`, body);
@@ -86,8 +90,8 @@ export class AdminService {
     return this.apiService.delete(`Shipper/${id}`);
   }
 
-  getListCustomer(){
-    return this.apiService.get(`Admin/danh-sach-khach-hang`);
+  getListCustomer(search = ''){
+    return this.apiService.get(`Admin/danh-sach-khach-hang?search=${search}`);
   }
   createCustomer(body){
     return this.apiService.post(`Admin/create-customer`, body);
@@ -105,5 +109,10 @@ export class AdminService {
   }
   changePassword(body){
     return this.apiService.put(`Admin/changepassword`, body);
+  }
+
+  //thong ke
+  statistic(){
+    return this.apiService.get(`Admin/thong-ke`);
   }
 }

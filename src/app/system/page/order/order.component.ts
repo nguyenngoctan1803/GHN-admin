@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit {
   @ViewChild('refundModal') refundModal: any;
   @ViewChild('deleteModal') deleteModal: any;
   @ViewChild('detailModal') detailModal: any;
+  @ViewChild('chargeModal') chargeModal: any;
 
   constructor(
     private router: Router,
@@ -172,5 +173,26 @@ export class OrderComponent implements OnInit {
     openDetailModal(id) {
       this.detailModal.openDetailModal(id);
     }
-  
+    //charge
+    openConfirmChargeModal(id, fee){
+      this.chargeModal.openConfirmChargeModal(id, fee);
+    }
+    confirmCharge($event){
+      this.adminService.chargeOrder($event).subscribe(
+        response => {
+          if(response.code == 2){
+            this.toastr.error('Đơn hàng đã được xác nhận thanh toán phí trước đó!', 'Thông báo');
+          }
+          else{
+            this.toastr.success('Xác nhận thanh toán phí đơn hàng thành công', 'Thông báo');
+          }
+          this.loadData(this.searchControl.value, this.selectedStatus != -1 ? this.selectedStatus : '');
+        },
+        error => {
+          this.toastr.error('Xác nhận thanh toán phí đơn hàng không thành công', 'Thông báo');
+          this.loadData(this.searchControl.value, this.selectedStatus != -1 ? this.selectedStatus : '');
+          console.error('There was an error!', error);
+        }
+      )
+    }
 }

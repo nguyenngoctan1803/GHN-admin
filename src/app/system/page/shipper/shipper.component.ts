@@ -32,7 +32,7 @@ export class ShipperComponent implements OnInit {
     wheelSpeed: 0.2,
     swipeEasing: true
   };
-
+  searchControl = new FormControl();
   //approve
   @ViewChild('updateModal') updateModal: any;
   @ViewChild('deleteModal') deleteModal: any;
@@ -45,12 +45,19 @@ export class ShipperComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(2000) // Chờ 300ms sau khi người dùng ngừng nhập
+      )
+      .subscribe(value => {
+        this.loadData(value);
+      });
     this.loadData();
   }
 
   // Init Data
-  loadData() {
-    this.adminService.getListShipper().subscribe(
+  loadData(search = '') {
+    this.adminService.getListShipper(search).subscribe(
       response => {
         this.data = response as any[];
       },

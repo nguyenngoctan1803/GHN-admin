@@ -21,12 +21,15 @@
                 <th scope="col">Khách hàng</th>
                 <th scope="col">Ngày tạo</th>
                 <th scope="col">Tiền vận chuyển</th>
+                <th scope="col">Tiền Phí</th>
+                <th scope="col">Khoảng cách</th>
                 <!-- <th scope="col">SDT người nhận</th>
                 <th scope="col">SDT người giao</th>
                 <th scope="col">Địa chỉ nhận</th>
                 <th scope="col">Địa chỉ giao</th> -->
                 <th scope="col">Trạng thái</th>
                 <th scope="col" style="min-width: 180px;">Chức năng</th>
+                <th scope="col" style="min-width: 180px;">Xác nhận phí</th>
               </tr>
             </thead>
 
@@ -37,6 +40,8 @@
                 <td>{{item.hoTenKhachHang}}</td>
                 <td>{{item.ngayTao | date: 'dd/MM/yyyy HH:mm a'}}</td>
                 <td>{{item.tienVanChuyen | customcurrency:'VND':'symbol':'1.0-2':'vi-VN' }}</td>
+                <td>{{item.tienPhi | customcurrency:'VND':'symbol':'1.0-2':'vi-VN' }}</td>
+                <td>{{item.khoangCach | number}} km</td>
                 <!-- <td>{{item.soDienThoaiNguoiGui}}</td>
                 <td>{{item.soDienThoaiNguoiNhan}}</td>
                 <td>{{item.diaChiGiaoHang}}</td>
@@ -60,6 +65,17 @@
                     <i class="ti ti-trash fs-5"></i>
                   </button>
                 </td>
+                <td>
+                  <span *ngIf="item.payStatus == 0" class="badge text-bg-dark mx-1">
+                    Chưa thanh toán
+                  </span>
+                  <button *ngIf="item.payStatus == 1" class="btn btn-warning round-40 btn-sm mx-1" (click)="openConfirmChargeModal(item.donHangID, item.tienPhi)">
+                    <i class="ti ti-check fs-5"></i>
+                  </button>
+                  <span *ngIf="item.payStatus == 2" class="badge text-bg-success mx-1">
+                    Đã xác nhận
+                  </span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -77,3 +93,4 @@
 <refund-modal #refundModal (outputEvent)="confirmRefund($event)"></refund-modal>
 <delete-modal #deleteModal (outputEvent)="confirmDelete($event)"></delete-modal>
 <detail-modal #detailModal></detail-modal>
+<confirm-charge-modal #chargeModal (outputEvent)="confirmCharge($event)"></confirm-charge-modal>

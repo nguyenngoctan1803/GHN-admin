@@ -27,6 +27,7 @@ import { EditProfileComponent } from './page/profile/edit-profile/edit-profile.c
 import { ChangePasswordComponent } from './page/profile/change-password/change-password.component';
 import {  CustomCurrencyPipe } from 'app/shared/service/currency.pipe';
 import { PipeModule } from 'app/shared/module/pipe/pipe.module';
+import { ConfirmChargeModalComponent } from './page/order/confirm-charge-modal/confirm-charge-modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -50,6 +51,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileComponent,
     EditProfileComponent,
     ChangePasswordComponent,
+    ConfirmChargeModalComponent,
   ],
   imports: [
     CommonModule,

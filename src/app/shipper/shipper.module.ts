@@ -27,6 +27,7 @@ import { RefundOrderComponent } from './page/refund-order/refund-order.component
 import { DetailRefundModalComponent } from './page/refund-order/detail-refund-modal/detail-refund-modal.component';
 import {  CustomCurrencyPipe } from 'app/shared/service/currency.pipe';
 import { PipeModule } from 'app/shared/module/pipe/pipe.module';
+import { ChargeModalComponent } from './page/success-order/charge-modal/charge-modal.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -51,6 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DetailSuccessModalComponent,
     RefundOrderComponent,
     DetailRefundModalComponent,
+    ChargeModalComponent,
   ],
   imports: [
     CommonModule,

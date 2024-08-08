@@ -34,7 +34,7 @@ export class ProcessComponent implements OnInit {
     wheelSpeed: 0.2,
     swipeEasing: true
   };
-
+  searchControl = new FormControl();
   //approve
   @ViewChild('doneModal') doneModal: any;
   @ViewChild('refundModal') refundModal: any;
@@ -48,13 +48,20 @@ export class ProcessComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchControl.valueChanges
+    .pipe(
+      debounceTime(2000) // Chờ 300ms sau khi người dùng ngừng nhập
+    )
+    .subscribe(value => {
+      this.loadData(value);
+    });
     this.loadData();
 
   }
 
   // Init Data
-  loadData() {
-    this.shipperService.getListProcess().subscribe(
+  loadData(search = '') {
+    this.shipperService.getListProcess(search).subscribe(
       response => {
         this.data = response as any[];
       },

@@ -2,11 +2,15 @@
     <div class="card card-table">
       <div class="card-body">
         <div class="search-container">
-          <div class="search-filter">
+          <div class="control-header">
+            <button class="btn btn-success float-right" (click)="openUpdateModal(null,'add')">Thêm</button>
           </div>
           <div class="search-filter">
           </div>
-          <button class="btn btn-success float-right" (click)="openUpdateModal(null,'add')">Thêm</button>
+          <div class="search-filter">
+            <label for="filter2">Tìm kiếm</label>
+            <input type="search" [formControl]="searchControl" class="form-control form-control-sm" placeholder="Tìm kiếm">
+          </div>
         </div>
         <div class="table-container table-responsive border rounded-4">
           <perfect-scrollbar [config]="scrollbarConfig" style="height: calc(100vh - 19rem);">
